@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3C09B0AC2F7E4C33001DD290 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 3C09B0AB2F7E4C33001DD290 /* GoogleMobileAds */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3CE375FB2F7CA19C00DD717A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +33,22 @@
 		3CE376042F7CA19C00DD717A /* QuickRetextUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickRetextUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3C09B0AE2F7E611F001DD290 /* Exceptions for "QuickRetext" folder in "QuickRetext" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 3CE375EC2F7CA19A00DD717A /* QuickRetext */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3CE375EF2F7CA19A00DD717A /* QuickRetext */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3C09B0AE2F7E611F001DD290 /* Exceptions for "QuickRetext" folder in "QuickRetext" target */,
+			);
 			path = QuickRetext;
 			sourceTree = "<group>";
 		};
@@ -52,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C09B0AC2F7E4C33001DD290 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +130,7 @@
 			);
 			name = QuickRetext;
 			packageProductDependencies = (
+				3C09B0AB2F7E4C33001DD290 /* GoogleMobileAds */,
 			);
 			productName = QuickRetext;
 			productReference = 3CE375ED2F7CA19A00DD717A /* QuickRetext.app */;
@@ -195,6 +214,9 @@
 			);
 			mainGroup = 3CE375E42F7CA19A00DD717A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3C09B0AA2F7E4C33001DD290 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3CE375EE2F7CA19A00DD717A /* Products */;
 			projectDirPath = "";
@@ -400,6 +422,7 @@
 				DEVELOPMENT_TEAM = 5H2AJURFQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickRetext/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +455,7 @@
 				DEVELOPMENT_TEAM = 5H2AJURFQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuickRetext/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -578,6 +602,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3C09B0AA2F7E4C33001DD290 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C09B0AB2F7E4C33001DD290 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C09B0AA2F7E4C33001DD290 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3CE375E52F7CA19A00DD717A /* Project object */;
 }

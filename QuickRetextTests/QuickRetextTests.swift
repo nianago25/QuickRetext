@@ -5,13 +5,10 @@
 //  Created by Yusuke Miyanaga on 2026/04/01.
 //
 
-import Testing
-@testable import QuickRetext
-
-struct QuickRetextTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-    }
-
-}
+// このファイルは空です。
+// テストは以下のファイルに分散して記述されています:
+//   Models/LengthInstructionTests.swift
+//   Models/ToneInstructionTests.swift
+//   Utilities/LanguageDetectorTests.swift
+//   ViewModels/MainViewModelTests.swift
+//   ViewModels/HistoryViewModelTests.swift

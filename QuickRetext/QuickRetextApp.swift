@@ -9,9 +9,23 @@ import SwiftUI
 
 @main
 struct QuickRetextApp: App {
+    @StateObject private var deps = AppDependencies()
+    /// isAdRemoved など複数画面で共有する状態を持つため App レベルで保持
+    @StateObject private var settingViewModel = SettingViewModel()
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView(
+                aiRepository: deps.aiRepository,
+                historyRepository: deps.historyRepository,
+                isModelAvailable: deps.isModelAvailable
+            )
+            .environmentObject(settingViewModel)
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            guard newPhase == .active else { return }
+            Task { await settingViewModel.checkPurchaseStatus() }
         }
     }
 }
