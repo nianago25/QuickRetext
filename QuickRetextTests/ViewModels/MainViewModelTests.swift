@@ -122,6 +122,38 @@ struct MainViewModelTests {
         #expect(vm.outputText == "リライト結果")
     }
 
+    // MARK: - 変換後のボタン選択解除
+
+    @Test("summarize 成功後に lastExecutedToneStep がクリアされる")
+    func convertLengthStepClearsToneStep() async {
+        let mock = MockAIRepository()
+        mock.resultToReturn = .success("result")
+        let vm = MainViewModel(ai: mock, history: MockHistoryRepository(), isModelAvailable: true)
+        vm.inputText = "テスト"
+        vm.lastExecutedToneStep = 2
+
+        vm.convert(lengthStep: 1)
+        try? await Task.sleep(for: .milliseconds(100))
+
+        #expect(vm.lastExecutedLengthStep == 1)
+        #expect(vm.lastExecutedToneStep == nil)
+    }
+
+    @Test("rewrite 成功後に lastExecutedLengthStep がクリアされる")
+    func convertToneStepClearsLengthStep() async {
+        let mock = MockAIRepository()
+        mock.resultToReturn = .success("result")
+        let vm = MainViewModel(ai: mock, history: MockHistoryRepository(), isModelAvailable: true)
+        vm.inputText = "テスト"
+        vm.lastExecutedLengthStep = 3
+
+        vm.convert(toneStep: 0)
+        try? await Task.sleep(for: .milliseconds(100))
+
+        #expect(vm.lastExecutedToneStep == 0)
+        #expect(vm.lastExecutedLengthStep == nil)
+    }
+
     // MARK: - cancel
 
     @Test("cancel() 呼び出し後に isProcessing が false になる")
