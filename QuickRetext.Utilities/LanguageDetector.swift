@@ -1,7 +1,8 @@
 import Foundation
+import QuickRetext_Models
 
-enum LanguageDetector {
-    static func detect(_ text: String) -> LanguageInstruction {
+public enum LanguageDetector {
+    public static func detect(_ text: String) -> LanguageInstruction {
         let sample = String(text.prefix(100))
         let japaneseCount = sample.unicodeScalars.filter {
             ($0.value >= 0x3040 && $0.value <= 0x309F) ||  // ひらがな

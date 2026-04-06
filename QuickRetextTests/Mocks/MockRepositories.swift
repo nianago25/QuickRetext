@@ -1,5 +1,6 @@
 import Foundation
-@testable import QuickRetext
+import QuickRetext_Models
+import QuickRetext_Repositories
 
 // MARK: - MockAIRepository
 
@@ -60,17 +61,17 @@ final class MockHistoryRepository: HistoryRepositoryProtocol {
     var shouldThrowOnDelete = false
 
     func save(_ item: HistoryItem) throws {
-        if shouldThrowOnSave { throw NSError(domain: "mock", code: -1) }
+        if shouldThrowOnSave { throw NSError(domain: "test", code: 1) }
         savedItems.append(item)
     }
 
     func fetchAll() throws -> [HistoryItem] {
-        if shouldThrowOnFetch { throw NSError(domain: "mock", code: -1) }
-        return Array(savedItems.reversed())
+        if shouldThrowOnFetch { throw NSError(domain: "test", code: 2) }
+        return savedItems
     }
 
     func delete(_ item: HistoryItem) throws {
-        if shouldThrowOnDelete { throw NSError(domain: "mock", code: -1) }
+        if shouldThrowOnDelete { throw NSError(domain: "test", code: 3) }
         savedItems.removeAll { $0.id == item.id }
     }
 }

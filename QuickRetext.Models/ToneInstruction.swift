@@ -1,12 +1,12 @@
 import Foundation
 
-enum ToneInstruction: Equatable {
+public enum ToneInstruction: Equatable {
     case casual
     case polite
     case formal
     case business
 
-    var instruction: String {
+    public var instruction: String {
         switch self {
         case .casual:   return "フレンドリーでカジュアルな口調で書いてください。"
         case .polite:   return "やや丁寧で読みやすい口調で書いてください。"
@@ -15,7 +15,7 @@ enum ToneInstruction: Equatable {
         }
     }
 
-    static func from(_ step: Int) -> ToneInstruction {
+    public static func from(_ step: Int) -> ToneInstruction {
         switch step {
         case 0:  return .casual
         case 1:  return .polite
@@ -25,7 +25,7 @@ enum ToneInstruction: Equatable {
         }
     }
 
-    static func label(for step: Int) -> String {
+    public static func label(for step: Int) -> String {
         switch step {
         case 0:  return "カジュアル"
         case 1:  return "普通"

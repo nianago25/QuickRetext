@@ -1,22 +1,25 @@
 import Combine
 import StoreKit
+import QuickRetext_Utilities
 
 @MainActor
-final class SettingViewModel: ObservableObject {
+public final class SettingViewModel: ObservableObject {
 
-    @Published var isAdRemoved: Bool = false
-    @Published var isClipboardAutoLoadEnabled: Bool = UserDefaults.standard.isClipboardAutoLoadEnabled {
+    @Published public var isAdRemoved: Bool = false
+    @Published public var isClipboardAutoLoadEnabled: Bool = UserDefaults.standard.isClipboardAutoLoadEnabled {
         didSet {
             UserDefaults.standard.isClipboardAutoLoadEnabled = isClipboardAutoLoadEnabled
         }
     }
-    @Published var isPurchasing: Bool = false
+    @Published public var isPurchasing: Bool = false
 
     private static let productID = "com.xxx.QuickRetext.removeAds"
 
+    public init() {}
+
     // MARK: - Purchase Status
 
-    func checkPurchaseStatus() async {
+    public func checkPurchaseStatus() async {
         var found = false
         for await result in Transaction.currentEntitlements {
             if case .verified(let transaction) = result,
@@ -33,7 +36,7 @@ final class SettingViewModel: ObservableObject {
 
     // MARK: - Purchase
 
-    func purchase() async {
+    public func purchase() async {
         isPurchasing = true
         defer { isPurchasing = false }
 
@@ -59,7 +62,7 @@ final class SettingViewModel: ObservableObject {
 
     // MARK: - Restore
 
-    func restore() async {
+    public func restore() async {
         do {
             try await AppStore.sync()
             await checkPurchaseStatus()

@@ -1,24 +1,27 @@
 import Combine
 import UIKit
+import QuickRetext_Models
+import QuickRetext_Repositories
+import QuickRetext_Utilities
 
 @MainActor
-final class MainViewModel: ObservableObject {
+public final class MainViewModel: ObservableObject {
 
     // MARK: - Published Properties
 
-    @Published var inputText: String = ""
-    @Published var outputText: String = ""
-    @Published var mode: Mode = .summarize
-    @Published var lengthStep: Int = 0   // 0〜3、デフォルト：ultraShort（短く）
-    @Published var toneStep: Int = 2     // 0〜3、デフォルト：formal（丁寧）
-    @Published var lastExecutedLengthStep: Int? = nil
-    @Published var lastExecutedToneStep: Int? = nil
-    @Published var isProcessing: Bool = false
-    @Published var errorMessage: String?
-    @Published var showErrorAlert: Bool = false
-    @Published var isModelAvailable: Bool = true
-    @Published var showModelUnavailableAlert: Bool = false
-    @Published var showModeChangedCancelAlert: Bool = false
+    @Published public var inputText: String = ""
+    @Published public var outputText: String = ""
+    @Published public var mode: Mode = .summarize
+    @Published public var lengthStep: Int = 0   // 0〜3、デフォルト：ultraShort（短く）
+    @Published public var toneStep: Int = 2     // 0〜3、デフォルト：formal（丁寧）
+    @Published public var lastExecutedLengthStep: Int? = nil
+    @Published public var lastExecutedToneStep: Int? = nil
+    @Published public var isProcessing: Bool = false
+    @Published public var errorMessage: String?
+    @Published public var showErrorAlert: Bool = false
+    @Published public var isModelAvailable: Bool = true
+    @Published public var showModelUnavailableAlert: Bool = false
+    @Published public var showModeChangedCancelAlert: Bool = false
 
     // MARK: - Private Properties
 
@@ -30,13 +33,13 @@ final class MainViewModel: ObservableObject {
 
     // MARK: - Computed Properties
 
-    var canConvert: Bool {
+    public var canConvert: Bool {
         isModelAvailable && !inputText.isEmpty && inputText.count <= 1500
     }
 
     // MARK: - Init
 
-    init(ai: any AIRepositoryProtocol, history: any HistoryRepositoryProtocol, isModelAvailable: Bool) {
+    public init(ai: any AIRepositoryProtocol, history: any HistoryRepositoryProtocol, isModelAvailable: Bool) {
         self.aiRepository = ai
         self.historyRepository = history
         self.isModelAvailable = isModelAvailable
@@ -47,7 +50,7 @@ final class MainViewModel: ObservableObject {
 
     // MARK: - Convert
 
-    func convert(lengthStep step: Int) {
+    public func convert(lengthStep step: Int) {
         guard canConvert, !isProcessing else { return }
         lengthStep = step
         currentTask?.cancel()
@@ -67,7 +70,7 @@ final class MainViewModel: ObservableObject {
         }
     }
 
-    func convert(toneStep step: Int) {
+    public func convert(toneStep step: Int) {
         guard canConvert, !isProcessing else { return }
         toneStep = step
         currentTask?.cancel()
@@ -89,7 +92,7 @@ final class MainViewModel: ObservableObject {
 
     // MARK: - Cancel
 
-    func cancel() {
+    public func cancel() {
         currentTask?.cancel()
         currentTask = nil
         isProcessing = false
@@ -97,7 +100,7 @@ final class MainViewModel: ObservableObject {
 
     // MARK: - Mode Change
 
-    func handleModeChange() {
+    public func handleModeChange() {
         guard isProcessing else { return }
         currentTask?.cancel()
         isProcessing = false
@@ -109,14 +112,14 @@ final class MainViewModel: ObservableObject {
 
     // MARK: - Input
 
-    func clearInput() {
+    public func clearInput() {
         inputText = ""
         outputText = ""
         lastExecutedLengthStep = nil
         lastExecutedToneStep = nil
     }
 
-    func loadClipboardIfNeeded(isEnabled: Bool) {
+    public func loadClipboardIfNeeded(isEnabled: Bool) {
         guard isEnabled,
               inputText.isEmpty,
               UIPasteboard.general.hasStrings,
@@ -140,7 +143,6 @@ final class MainViewModel: ObservableObject {
             guard !Task.isCancelled else { return }
             outputText = result
             onSuccess()
-            // 変換成功時に履歴保存
             let item = HistoryItem(
                 inputText: inputText,
                 outputText: result,

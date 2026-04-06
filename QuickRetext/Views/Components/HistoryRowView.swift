@@ -1,4 +1,5 @@
 import SwiftUI
+import QuickRetext_Models
 
 struct HistoryRowView: View {
     let item: HistoryItem

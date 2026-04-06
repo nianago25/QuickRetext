@@ -1,4 +1,8 @@
 import SwiftUI
+import QuickRetext_Models
+import QuickRetext_Repositories
+import QuickRetext_ViewModels
+import QuickRetext_Utilities
 
 struct MainView: View {
     @StateObject private var viewModel: MainViewModel

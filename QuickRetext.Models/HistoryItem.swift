@@ -2,16 +2,16 @@ import SwiftData
 import Foundation
 
 @Model
-final class HistoryItem: Identifiable {
-    var id: UUID
-    var inputText: String
-    var outputText: String
-    var mode: String      // Mode.rawValue を保存
-    var lengthStep: Int   // 0〜3
-    var toneStep: Int     // 0〜3
-    var createdAt: Date
+public final class HistoryItem: Identifiable {
+    public var id: UUID
+    public var inputText: String
+    public var outputText: String
+    public var mode: String      // Mode.rawValue を保存
+    public var lengthStep: Int   // 0〜3
+    public var toneStep: Int     // 0〜3
+    public var createdAt: Date
 
-    init(
+    public init(
         inputText: String,
         outputText: String,
         mode: Mode,

@@ -1,6 +1,7 @@
 import Foundation
+import QuickRetext_Models
 
-protocol AIRepositoryProtocol: Sendable {
+public protocol AIRepositoryProtocol: Sendable {
     func summarize(
         input: String,
         length: LengthInstruction,

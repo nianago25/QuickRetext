@@ -1,7 +1,7 @@
 import Foundation
 
 extension UserDefaults {
-    var isClipboardAutoLoadEnabled: Bool {
+    public var isClipboardAutoLoadEnabled: Bool {
         get { object(forKey: "isClipboardAutoLoadEnabled") as? Bool ?? true }
         set { set(newValue, forKey: "isClipboardAutoLoadEnabled") }
     }
