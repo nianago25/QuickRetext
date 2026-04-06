@@ -49,6 +49,7 @@ struct SettingView: View {
                             .font(.caption)
                     }
                 }
+                .buttonStyle(.plain)
 
                 if isCreditsExpanded {
                     creditsContent
