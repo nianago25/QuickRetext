@@ -62,6 +62,7 @@ final class MainViewModel: ObservableObject {
                 )
             } onSuccess: {
                 self.lastExecutedLengthStep = step
+                self.lastExecutedToneStep = nil
             }
         }
     }
@@ -81,6 +82,7 @@ final class MainViewModel: ObservableObject {
                 )
             } onSuccess: {
                 self.lastExecutedToneStep = step
+                self.lastExecutedLengthStep = nil
             }
         }
     }
