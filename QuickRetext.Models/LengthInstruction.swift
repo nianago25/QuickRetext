@@ -1,12 +1,12 @@
 import Foundation
 
-enum LengthInstruction: Equatable {
+public enum LengthInstruction: Equatable {
     case ultraShort
     case concise
     case balanced
     case detailed
 
-    var instruction: String {
+    public var instruction: String {
         switch self {
         case .ultraShort: return "できるだけ短く、1〜2文で答えてください。"
         case .concise:    return "要点のみを簡潔にまとめてください。"
@@ -15,7 +15,7 @@ enum LengthInstruction: Equatable {
         }
     }
 
-    static func from(_ step: Int) -> LengthInstruction {
+    public static func from(_ step: Int) -> LengthInstruction {
         switch step {
         case 0:  return .ultraShort
         case 1:  return .concise
@@ -25,7 +25,7 @@ enum LengthInstruction: Equatable {
         }
     }
 
-    static func label(for step: Int) -> String {
+    public static func label(for step: Int) -> String {
         switch step {
         case 0:  return "短く"
         case 1:  return "簡潔"

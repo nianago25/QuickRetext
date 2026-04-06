@@ -1,4 +1,6 @@
 import SwiftUI
+import QuickRetext_Models
+import QuickRetext_ViewModels
 
 struct ControlPanelView: View {
     @ObservedObject var viewModel: MainViewModel

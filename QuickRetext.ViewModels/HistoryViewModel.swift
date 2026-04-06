@@ -1,18 +1,20 @@
 import Combine
 import Foundation
+import QuickRetext_Models
+import QuickRetext_Repositories
 
 @MainActor
-final class HistoryViewModel: ObservableObject {
+public final class HistoryViewModel: ObservableObject {
 
-    @Published var items: [HistoryItem] = []
+    @Published public var items: [HistoryItem] = []
 
     private let historyRepository: any HistoryRepositoryProtocol
 
-    init(history: any HistoryRepositoryProtocol) {
+    public init(history: any HistoryRepositoryProtocol) {
         self.historyRepository = history
     }
 
-    func loadItems() {
+    public func loadItems() {
         do {
             items = try historyRepository.fetchAll()
         } catch {
@@ -20,7 +22,7 @@ final class HistoryViewModel: ObservableObject {
         }
     }
 
-    func restore(_ item: HistoryItem, to viewModel: MainViewModel) {
+    public func restore(_ item: HistoryItem, to viewModel: MainViewModel) {
         viewModel.inputText  = item.inputText
         viewModel.outputText = ""
         viewModel.mode       = Mode(rawValue: item.mode) ?? .summarize
@@ -30,7 +32,7 @@ final class HistoryViewModel: ObservableObject {
         viewModel.lastExecutedToneStep   = nil
     }
 
-    func delete(at indexSet: IndexSet) {
+    public func delete(at indexSet: IndexSet) {
         for index in indexSet {
             let item = items[index]
             try? historyRepository.delete(item)

@@ -1,5 +1,5 @@
 import Testing
-@testable import QuickRetext
+@testable import QuickRetext_Models
 
 @Suite("LengthInstruction Tests")
 struct LengthInstructionTests {

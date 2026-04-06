@@ -1,4 +1,5 @@
 import SwiftUI
+import QuickRetext_ViewModels
 
 struct SettingView: View {
     @EnvironmentObject private var settingViewModel: SettingViewModel

@@ -1,5 +1,7 @@
 import SwiftData
 import Foundation
+import QuickRetext_Models
+import QuickRetext_Repositories
 
 /// アプリ全体のリポジトリを生成・保持する DI コンテナ（値型）。
 /// ViewModel は各 View が @StateObject で所有する。

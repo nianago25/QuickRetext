@@ -1,12 +1,12 @@
 import Foundation
 
-enum AIRepositoryError: Error, Equatable {
+public enum AIRepositoryError: Error, Equatable {
     case modelUnavailable
     case inputTooLong
     case generationFailed
     case unknown(Error)
 
-    static func == (lhs: AIRepositoryError, rhs: AIRepositoryError) -> Bool {
+    public static func == (lhs: AIRepositoryError, rhs: AIRepositoryError) -> Bool {
         switch (lhs, rhs) {
         case (.modelUnavailable, .modelUnavailable): return true
         case (.inputTooLong, .inputTooLong):         return true

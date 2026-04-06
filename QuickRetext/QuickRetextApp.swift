@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import QuickRetext_Models
+import QuickRetext_Repositories
+import QuickRetext_ViewModels
 
 @main
 struct QuickRetextApp: App {

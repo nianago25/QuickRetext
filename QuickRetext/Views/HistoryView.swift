@@ -1,4 +1,7 @@
 import SwiftUI
+import QuickRetext_Models
+import QuickRetext_Repositories
+import QuickRetext_ViewModels
 
 struct HistoryView: View {
     @StateObject private var viewModel: HistoryViewModel

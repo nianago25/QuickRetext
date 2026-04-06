@@ -1,22 +1,22 @@
 import Foundation
+import QuickRetext_Models
 
 #if canImport(FoundationModels)
 import FoundationModels
 
 @available(iOS 26.0, *)
-final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
+public final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
     private let model: SystemLanguageModel
 
-    init() throws {
+    public init() throws {
         let systemModel = SystemLanguageModel.default
-        // availability は .available / .unavailable(reason:) の enum
         guard case .available = systemModel.availability else {
             throw AIRepositoryError.modelUnavailable
         }
         self.model = systemModel
     }
 
-    func summarize(
+    public func summarize(
         input: String,
         length: LengthInstruction,
         language: LanguageInstruction
@@ -42,7 +42,7 @@ final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
         return try await generate(systemPrompt: systemPrompt, userPrompt: userPrompt, temperature: 0.2)
     }
 
-    func rewrite(
+    public func rewrite(
         input: String,
         tone: ToneInstruction,
         language: LanguageInstruction
@@ -91,13 +91,13 @@ final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
 
 // FoundationModels が利用できない SDK でのフォールバック（開発・CI 用）
 @available(iOS 26.0, *)
-final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
-    init() throws { throw AIRepositoryError.modelUnavailable }
+public final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
+    public init() throws { throw AIRepositoryError.modelUnavailable }
 
-    func summarize(input: String, length: LengthInstruction, language: LanguageInstruction) async throws -> String {
+    public func summarize(input: String, length: LengthInstruction, language: LanguageInstruction) async throws -> String {
         throw AIRepositoryError.modelUnavailable
     }
-    func rewrite(input: String, tone: ToneInstruction, language: LanguageInstruction) async throws -> String {
+    public func rewrite(input: String, tone: ToneInstruction, language: LanguageInstruction) async throws -> String {
         throw AIRepositoryError.modelUnavailable
     }
 }
@@ -106,12 +106,14 @@ final class AIRepository: AIRepositoryProtocol, @unchecked Sendable {
 
 // MARK: - Unavailable Stub
 
-final class AIRepositoryUnavailable: AIRepositoryProtocol, Sendable {
-    func summarize(input: String, length: LengthInstruction, language: LanguageInstruction) async throws -> String {
+public final class AIRepositoryUnavailable: AIRepositoryProtocol, Sendable {
+    public init() {}
+
+    public func summarize(input: String, length: LengthInstruction, language: LanguageInstruction) async throws -> String {
         throw AIRepositoryError.modelUnavailable
     }
 
-    func rewrite(input: String, tone: ToneInstruction, language: LanguageInstruction) async throws -> String {
+    public func rewrite(input: String, tone: ToneInstruction, language: LanguageInstruction) async throws -> String {
         throw AIRepositoryError.modelUnavailable
     }
 }

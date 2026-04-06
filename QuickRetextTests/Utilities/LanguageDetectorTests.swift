@@ -1,5 +1,6 @@
 import Testing
-@testable import QuickRetext
+@testable import QuickRetext_Models
+@testable import QuickRetext_Utilities
 
 @Suite("LanguageDetector Tests")
 struct LanguageDetectorTests {

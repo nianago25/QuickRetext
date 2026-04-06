@@ -1,5 +1,7 @@
 import Testing
-@testable import QuickRetext
+@testable import QuickRetext_Models
+@testable import QuickRetext_Repositories
+@testable import QuickRetext_ViewModels
 
 @Suite("MainViewModel Tests")
 @MainActor
