@@ -14,17 +14,29 @@ struct QuickRetextApp: App {
     @StateObject private var settingViewModel = SettingViewModel()
     @Environment(\.scenePhase) private var scenePhase
 
+    /// ユニットテスト実行中かどうかを判定する。
+    /// テストホストとしてアプリが起動すると UIPasteboard へのアクセスで
+    /// OS のペースト許可ダイアログが表示されテストがハングするため、
+    /// ユニットテスト時はアプリ UI を表示しない。
+    private var isTesting: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+
     var body: some Scene {
         WindowGroup {
-            MainView(
-                aiRepository: deps.aiRepository,
-                historyRepository: deps.historyRepository,
-                isModelAvailable: deps.isModelAvailable
-            )
-            .environmentObject(settingViewModel)
+            if isTesting {
+                Color.clear
+            } else {
+                MainView(
+                    aiRepository: deps.aiRepository,
+                    historyRepository: deps.historyRepository,
+                    isModelAvailable: deps.isModelAvailable
+                )
+                .environmentObject(settingViewModel)
+            }
         }
         .onChange(of: scenePhase) { _, newPhase in
-            guard newPhase == .active else { return }
+            guard newPhase == .active, !isTesting else { return }
             Task { await settingViewModel.checkPurchaseStatus() }
         }
     }
