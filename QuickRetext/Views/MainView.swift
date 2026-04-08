@@ -43,7 +43,10 @@ struct MainView: View {
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: 0) {
                     ControlPanelView(viewModel: viewModel)
-                    AdBannerView(isVisible: !settingViewModel.isAdRemoved)
+                    if !settingViewModel.isAdRemoved {
+                        AdBannerView(isVisible: true)
+                            .padding(.top, 8)
+                    }
                 }
             }
             .navigationTitle("クイックリテキスト")
