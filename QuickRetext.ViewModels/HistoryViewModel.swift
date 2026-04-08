@@ -7,6 +7,15 @@ import QuickRetext_Repositories
 public final class HistoryViewModel: ObservableObject {
 
     @Published public var items: [HistoryItem] = []
+    @Published public var searchText: String = ""
+
+    public var filteredItems: [HistoryItem] {
+        guard !searchText.isEmpty else { return items }
+        return items.filter {
+            $0.inputText.localizedCaseInsensitiveContains(searchText)
+            || $0.outputText.localizedCaseInsensitiveContains(searchText)
+        }
+    }
 
     private let historyRepository: any HistoryRepositoryProtocol
 

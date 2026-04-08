@@ -18,7 +18,7 @@ struct HistoryView: View {
 
     var body: some View {
         List {
-            ForEach(viewModel.items) { item in
+            ForEach(viewModel.filteredItems) { item in
                 HistoryRowView(item: item)
                     .contentShape(Rectangle())
                     .onTapGesture {
@@ -35,6 +35,7 @@ struct HistoryView: View {
         }
         .navigationTitle("変換履歴")
         .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $viewModel.searchText, prompt: "履歴を検索")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(role: .destructive) {
@@ -56,7 +57,7 @@ struct HistoryView: View {
             viewModel.loadItems()
         }
         .overlay {
-            if viewModel.items.isEmpty {
+            if viewModel.filteredItems.isEmpty {
                 ContentUnavailableView(
                     "履歴がありません",
                     systemImage: "clock",
