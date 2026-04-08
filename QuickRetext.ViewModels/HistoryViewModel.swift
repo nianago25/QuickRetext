@@ -24,7 +24,7 @@ public final class HistoryViewModel: ObservableObject {
 
     public func restore(_ item: HistoryItem, to viewModel: MainViewModel) {
         viewModel.inputText  = item.inputText
-        viewModel.outputText = ""
+        viewModel.outputText = item.outputText
         viewModel.mode       = Mode(rawValue: item.mode) ?? .summarize
         viewModel.lengthStep = item.lengthStep
         viewModel.toneStep   = item.toneStep

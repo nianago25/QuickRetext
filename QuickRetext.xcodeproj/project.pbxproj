@@ -125,13 +125,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0065296171DB7882C2A81DF6 /* QuickRetext_Models.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickRetext_Models.framework; path = QuickRetext_Models.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CE375ED2F7CA19A00DD717A /* QuickRetext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = QuickRetext.app; path = QuickRetext.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CE375FA2F7CA19C00DD717A /* QuickRetextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = QuickRetextTests.xctest; path = QuickRetextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CE376042F7CA19C00DD717A /* QuickRetextUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = QuickRetextUITests.xctest; path = QuickRetextUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BE19BD81F088855A2F86027 /* QuickRetext_Repositories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickRetext_Repositories.framework; path = QuickRetext_Repositories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		62B930DEF3383A4228877A9E /* QuickRetext_ViewModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickRetext_ViewModels.framework; path = QuickRetext_ViewModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B69A94A1DFC2F70AF1A60E7 /* QuickRetext_Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = QuickRetext_Utilities.framework; path = QuickRetext_Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0065296171DB7882C2A81DF6 /* QuickRetext_Models.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickRetext_Models.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE375ED2F7CA19A00DD717A /* QuickRetext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickRetext.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE375FA2F7CA19C00DD717A /* QuickRetextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickRetextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE376042F7CA19C00DD717A /* QuickRetextUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickRetextUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BE19BD81F088855A2F86027 /* QuickRetext_Repositories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickRetext_Repositories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62B930DEF3383A4228877A9E /* QuickRetext_ViewModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickRetext_ViewModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B69A94A1DFC2F70AF1A60E7 /* QuickRetext_Utilities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickRetext_Utilities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -147,8 +147,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		324589A0A0BE3FCAAC78B041 /* QuickRetext.Utilities */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = QuickRetext.Utilities;
 			sourceTree = "<group>";
 		};
@@ -162,36 +160,26 @@
 		};
 		3CE375FD2F7CA19C00DD717A /* QuickRetextTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = QuickRetextTests;
 			sourceTree = "<group>";
 		};
 		3CE376072F7CA19C00DD717A /* QuickRetextUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = QuickRetextUITests;
 			sourceTree = "<group>";
 		};
 		593EEF489E219440C9E3C9DF /* QuickRetext.ViewModels */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = QuickRetext.ViewModels;
 			sourceTree = "<group>";
 		};
 		CF78E828CC4182CA1FC49014 /* QuickRetext.Repositories */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = QuickRetext.Repositories;
 			sourceTree = "<group>";
 		};
 		D4EA0FF7EC5F248F2E62FDE8 /* QuickRetext.Models */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = QuickRetext.Models;
 			sourceTree = "<group>";
 		};
@@ -255,12 +243,12 @@
 			isa = PBXGroup;
 			children = (
 				3CE375EF2F7CA19A00DD717A /* QuickRetext */,
+				593EEF489E219440C9E3C9DF /* QuickRetext.ViewModels */,
+				D4EA0FF7EC5F248F2E62FDE8 /* QuickRetext.Models */,
+				CF78E828CC4182CA1FC49014 /* QuickRetext.Repositories */,
+				324589A0A0BE3FCAAC78B041 /* QuickRetext.Utilities */,
 				3CE375FD2F7CA19C00DD717A /* QuickRetextTests */,
 				3CE376072F7CA19C00DD717A /* QuickRetextUITests */,
-				D4EA0FF7EC5F248F2E62FDE8 /* QuickRetext.Models */,
-				324589A0A0BE3FCAAC78B041 /* QuickRetext.Utilities */,
-				CF78E828CC4182CA1FC49014 /* QuickRetext.Repositories */,
-				593EEF489E219440C9E3C9DF /* QuickRetext.ViewModels */,
 				7F8E08FD6BC2FC5962954501 /* Products */,
 			);
 			sourceTree = "<group>";

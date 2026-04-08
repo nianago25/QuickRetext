@@ -30,6 +30,13 @@ struct HistoryRowView: View {
             Text(item.inputText)
                 .lineLimit(1)
                 .font(.subheadline)
+
+            if !item.outputText.isEmpty {
+                Text(String(item.outputText.prefix(50)))
+                    .lineLimit(1)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
         .padding(.vertical, 4)
     }
