@@ -59,6 +59,7 @@ final class MockHistoryRepository: HistoryRepositoryProtocol {
     var shouldThrowOnSave = false
     var shouldThrowOnFetch = false
     var shouldThrowOnDelete = false
+    var shouldThrowOnDeleteAll = false
 
     func save(_ item: HistoryItem) throws {
         if shouldThrowOnSave { throw NSError(domain: "test", code: 1) }
@@ -73,5 +74,10 @@ final class MockHistoryRepository: HistoryRepositoryProtocol {
     func delete(_ item: HistoryItem) throws {
         if shouldThrowOnDelete { throw NSError(domain: "test", code: 3) }
         savedItems.removeAll { $0.id == item.id }
+    }
+
+    func deleteAll() throws {
+        if shouldThrowOnDeleteAll { throw NSError(domain: "test", code: 4) }
+        savedItems.removeAll()
     }
 }

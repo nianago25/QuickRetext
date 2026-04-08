@@ -26,4 +26,9 @@ public final class HistoryRepository: HistoryRepositoryProtocol {
         container.mainContext.delete(item)
         try container.mainContext.save()
     }
+
+    public func deleteAll() throws {
+        try container.mainContext.delete(model: HistoryItem.self)
+        try container.mainContext.save()
+    }
 }
