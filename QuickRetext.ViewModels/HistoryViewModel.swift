@@ -39,4 +39,9 @@ public final class HistoryViewModel: ObservableObject {
         }
         loadItems()
     }
+
+    public func deleteAll() {
+        try? historyRepository.deleteAll()
+        loadItems()
+    }
 }

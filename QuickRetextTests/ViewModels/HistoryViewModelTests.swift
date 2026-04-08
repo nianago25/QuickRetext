@@ -50,6 +50,42 @@ struct HistoryViewModelTests {
         #expect(historyRepo.savedItems.isEmpty)
     }
 
+    // MARK: - deleteAll
+
+    @Test("deleteAll で全件削除される")
+    func deleteAllRemovesAllItems() {
+        let historyRepo = MockHistoryRepository()
+        historyRepo.savedItems = [
+            HistoryItem(inputText: "a", outputText: "b", mode: .summarize, lengthStep: 0, toneStep: 0),
+            HistoryItem(inputText: "c", outputText: "d", mode: .rewrite, lengthStep: 1, toneStep: 1),
+        ]
+
+        let vm = HistoryViewModel(history: historyRepo)
+        vm.loadItems()
+        #expect(vm.items.count == 2)
+
+        vm.deleteAll()
+
+        #expect(vm.items.isEmpty)
+        #expect(historyRepo.savedItems.isEmpty)
+    }
+
+    @Test("deleteAll でリポジトリが失敗しても items が空になる")
+    func deleteAllHandlesError() {
+        let historyRepo = MockHistoryRepository()
+        historyRepo.savedItems = [
+            HistoryItem(inputText: "a", outputText: "b", mode: .summarize, lengthStep: 0, toneStep: 0),
+        ]
+        historyRepo.shouldThrowOnDeleteAll = true
+
+        let vm = HistoryViewModel(history: historyRepo)
+        vm.loadItems()
+        vm.deleteAll()
+
+        // エラー時でもリロードされる（fetchAll で残存アイテムが返る）
+        #expect(vm.items.count == 1)
+    }
+
     // MARK: - restore
 
     @Test("restore で mainViewModel の各プロパティが復元される")

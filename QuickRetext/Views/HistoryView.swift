@@ -9,6 +9,7 @@ struct HistoryView: View {
     /// restore 呼び出し先。所有はしない
     private let mainViewModel: MainViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var isShowingDeleteAllConfirmation = false
 
     init(historyRepository: any HistoryRepositoryProtocol, mainViewModel: MainViewModel) {
         _viewModel = StateObject(wrappedValue: HistoryViewModel(history: historyRepository))
@@ -34,6 +35,23 @@ struct HistoryView: View {
         }
         .navigationTitle("変換履歴")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(role: .destructive) {
+                    isShowingDeleteAllConfirmation = true
+                } label: {
+                    Image(systemName: "trash")
+                }
+                .disabled(viewModel.items.isEmpty)
+            }
+        }
+        .confirmationDialog("全件削除", isPresented: $isShowingDeleteAllConfirmation) {
+            Button("すべて削除", role: .destructive) {
+                viewModel.deleteAll()
+            }
+        } message: {
+            Text("すべての履歴を削除しますか？この操作は取り消せません。")
+        }
         .onAppear {
             viewModel.loadItems()
         }
