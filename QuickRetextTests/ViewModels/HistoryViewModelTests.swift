@@ -67,7 +67,7 @@ struct HistoryViewModelTests {
         vm.restore(item, to: mainVM)
 
         #expect(mainVM.inputText == "restored input")
-        #expect(mainVM.outputText.isEmpty)
+        #expect(mainVM.outputText == "restored output")
         #expect(mainVM.mode == .rewrite)
         #expect(mainVM.lengthStep == 2)
         #expect(mainVM.toneStep == 3)
