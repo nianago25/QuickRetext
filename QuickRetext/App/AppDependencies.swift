@@ -30,7 +30,12 @@ struct AppDependencies {
             modelAvailable = false
         }
 
-        let container = try! ModelContainer(for: HistoryItem.self)
+        let container: ModelContainer
+        do {
+            container = try ModelContainer(for: HistoryItem.self)
+        } catch {
+            fatalError("SwiftData ModelContainer の初期化に失敗しました: \(error)")
+        }
 
         aiRepository      = ai
         historyRepository = HistoryRepository(container: container)

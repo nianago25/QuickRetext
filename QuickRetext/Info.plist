@@ -2,7 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AdUnitID</key>
+	<string>ca-app-pub-6637260211303243/8176730885</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<string>ca-app-pub-6637260211303243~1683686752</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>あなたに関連性の高い広告を表示するために使用します。許可しない場合も広告は表示されますが、パーソナライズされません。</string>
 </dict>
 </plist>
