@@ -40,6 +40,10 @@ struct MainView: View {
                 }
                 .padding()
             }
+            .scrollDismissesKeyboard(.interactively)
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            }
             .safeAreaInset(edge: .bottom) {
                 VStack(spacing: 0) {
                     ControlPanelView(viewModel: viewModel)
