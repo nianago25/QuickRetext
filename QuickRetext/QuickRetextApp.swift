@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 import QuickRetext_Models
 import QuickRetext_Repositories
 import QuickRetext_ViewModels
@@ -67,6 +68,19 @@ struct QuickRetextApp: App {
     /// SDK の start() は AppDelegate で先に実施済み。
     private func requestTrackingAuthorization() {
         ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
+    }
+
+    // MARK: - StoreKit
+
+    /// アプリ起動中に外部から購入が完了した場合（ファミリー共有など）に対応するリスナー。
+    /// .task modifier で呼び出すことで View の生存期間に合わせて自動キャンセルされる。
+    private func listenForTransactionUpdates() async {
+        for await result in Transaction.updates {
+            if case .verified(let transaction) = result {
+                await transaction.finish()
+                await settingViewModel.checkPurchaseStatus()
+            }
+        }
     }
 
 }
