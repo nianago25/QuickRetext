@@ -20,9 +20,7 @@ struct SettingView: View {
             Section {
                 purchaseRow
                 if !settingViewModel.isAdRemoved {
-                    Button("購入を復元する") {
-                        Task { await settingViewModel.restore() }
-                    }
+                    restoreRow
                 }
             }
 
@@ -62,6 +60,14 @@ struct SettingView: View {
         }
         .navigationTitle("設定")
         .navigationBarTitleDisplayMode(.inline)
+        .alert("エラー", isPresented: Binding(
+            get: { settingViewModel.purchaseError != nil },
+            set: { if !$0 { settingViewModel.purchaseError = nil } }
+        )) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(settingViewModel.purchaseError ?? "")
+        }
     }
 
     // MARK: - Purchase Row
@@ -84,6 +90,23 @@ struct SettingView: View {
         } else {
             Button("広告を非表示にする") {
                 Task { await settingViewModel.purchase() }
+            }
+        }
+    }
+
+    // MARK: - Restore Row
+
+    @ViewBuilder
+    private var restoreRow: some View {
+        if settingViewModel.isRestoring {
+            HStack {
+                Text("購入を復元する")
+                Spacer()
+                ProgressView()
+            }
+        } else {
+            Button("購入を復元する") {
+                Task { await settingViewModel.restore() }
             }
         }
     }
