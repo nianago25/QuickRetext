@@ -3,6 +3,7 @@ import SwiftUI
 struct InputAreaView: View {
     @Binding var text: String
     let onClear: () -> Void
+    @FocusState private var isFocused: Bool
 
     private let maxLength = 1500
 
@@ -11,6 +12,15 @@ struct InputAreaView: View {
             ZStack(alignment: .topTrailing) {
                 TextEditor(text: $text)
                     .frame(minHeight: 160)
+                    .focused($isFocused)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("完了") {
+                                isFocused = false
+                            }
+                        }
+                    }
 
                 if !text.isEmpty {
                     Button(action: onClear) {
