@@ -23,8 +23,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         #if DEBUG
-        // テスト端末で実際の広告リクエストが発生しないようにする
-        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = ["18cf2cf4501848a6068bcd2e5c25bcd5"]
+        // 実機テスト端末で本番広告が出ないようにする（シミュレーターは SDK が自動でテスト広告を返す）
+        MobileAds.shared.requestConfiguration.testDeviceIdentifiers = [""]
         #endif
         MobileAds.shared.start(completionHandler: nil)
         return true
@@ -53,6 +53,9 @@ struct QuickRetextApp: App {
             .environmentObject(settingViewModel)
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 requestTrackingAuthorization()
+            }
+            .task {
+                await listenForTransactionUpdates()
             }
         }
         .onChange(of: scenePhase) { _, newPhase in
